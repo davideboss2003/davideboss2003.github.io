@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Davidus Terminal</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00FF00;
+      font-family: monospace;
+      margin: 0;
+      padding: 1rem;
+    }
+    #terminal {
+      white-space: pre-wrap;
+    }
+    .input-line {
+      display: flex;
+    }
+    .prompt {
+      color: #00FF00;
+    }
+    input {
+      background: black;
+      border: none;
+      color: #00FF00;
+      outline: none;
+      font-family: monospace;
+      width: 100%;
+    }
+    a {
+      color: #00FF00;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal"></div>
+  <div class="input-line">
+    <span class="prompt">user@davideboss ~ % </span>
+    <input type="text" id="cmd" autofocus />
+  </div>
+  <script>
+    const terminal = document.getElementById("terminal");
+    const cmdInput = document.getElementById("cmd");
+
+    const files = {
+      "about-me.txt": "Salut! Sunt Davidus aka davideboss2003 și îmi place să codez, să fac proiecte embedded și să învăț lucruri noi.",
+      "projects.txt": "- Smart Helmet for Visually Impaired\n- FPGA Temperature Monitor\n- Full Stack Movie App",
+      "contact.csv": "Property,Value\nName,David Mureșan\nGitHub,davideboss2003\nEmail,davidus@email.com\nLinkedIn,in/david-muresan-xyz"
+    };
+
+    function runCommand(cmd) {
+      if (cmd === "clear") {
+        terminal.innerHTML = "";
+      } else if (cmd.startsWith("cat ")) {
+        const filename = cmd.split(" ")[1];
+        if (files[filename]) {
+          terminal.innerHTML += files[filename] + "\n";
+        } else {
+          terminal.innerHTML += "cat: " + filename + ": No such file\n";
+        }
+      } else if (cmd === "ls") {
+        terminal.innerHTML += Object.keys(files).join("\n") + "\n";
+      } else {
+        terminal.innerHTML += "command not found: " + cmd + "\n";
+      }
+    }
+
+    cmdInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        const value = cmdInput.value;
+        terminal.innerHTML += "user@davideboss ~ % " + value + "\n";
+        runCommand(value);
+        cmdInput.value = "";
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    });
+  </script>
+</body>
+</html>
