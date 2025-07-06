@@ -12,6 +12,7 @@
       font-family: monospace;
       margin: 0;
       padding: 2rem;
+      overflow: hidden;
     }
     .cmd-link {
       display: block;
@@ -19,12 +20,18 @@
       text-decoration: none;
       font-size: 1.2rem;
       margin-bottom: 1rem;
-      cursor: pointer;
       padding: 2px 6px;
+      cursor: pointer;
     }
     .cmd-link:hover {
       background-color: #00FF00;
       color: black;
+    }
+    #mario {
+      position: absolute;
+      width: 100px;
+      height: auto;
+      transition: all 1s linear;
     }
   </style>
 </head>
@@ -34,5 +41,18 @@
     <a class="cmd-link" href="my-projects.html">my-projects.txt</a>
     <a class="cmd-link" href="contact-info.html">contact-info.csv</a>
   </div>
+  <img src="mario.png" id="mario" />
+
+  <script>
+    const mario = document.getElementById("mario");
+    function moveMario() {
+      const x = Math.random() * (window.innerWidth - 60);
+      const y = Math.random() * (window.innerHeight - 60);
+      mario.style.left = x + "px";
+      mario.style.top = y + "px";
+    }
+    setInterval(moveMario, 2000);
+    window.onload = moveMario;
+  </script>
 </body>
 </html>
