@@ -1,13 +1,58 @@
 
-    <html><head><title>Contact Info</title></head>
-    <body style="background-color:black;color:#00FF00;font-family:monospace;padding:2rem">
-    <h2>contact-info.csv</h2>
-    <table>
-      <tr><td>Name:</td><td>David Mureșan</td></tr>
-      <tr><td>Email:</td><td>davidus@email.com</td></tr>
-      <tr><td>GitHub:</td><td>davideboss2003</td></tr>
-      <tr><td>LinkedIn:</td><td>in/david-muresan-xyz</td></tr>
-    </table>
-    <button onclick="window.location.href='index.html'" style="margin-top:2rem;padding:0.5rem;background:#00FF00;color:black;font-family:monospace;border:none">clear</button>
-    </body></html>
-    
+<html>
+<head>
+  <title>contact-info.csv</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00FF00;
+      font-family: monospace;
+      padding: 2rem;
+    }
+    #output::after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: #00FF00;
+      margin-left: 4px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      from, to { background: transparent }
+      50% { background: #00FF00 }
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.5rem;
+      background: #00FF00;
+      color: black;
+      font-family: monospace;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div><strong>user@davideboss ~ % cat ./contact-info.csv</strong></div>
+  <div id="output"></div>
+  <br/>
+  <button onclick="window.location.href='index.html'">clear</button>
+  
+<script>
+let i = 0;
+const text = `Property,Value\nName,David Mureșan\nGitHub,davideboss2003\nEmail,davidus@email.com\nLinkedIn,in/david-muresan-xyz`;
+const speed = 25;
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("output").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+window.onload = typeWriter;
+</script>
+
+</body>
+</html>
