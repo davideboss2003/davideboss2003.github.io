@@ -9,50 +9,59 @@
       font-family: monospace;
       padding: 2rem;
     }
-    #output::after {
-      content: "";
+    #terminal {
+      white-space: pre-wrap;
+      display: inline;
+    }
+    #cursor {
       display: inline-block;
       width: 10px;
-      height: 20px;
+      height: 18px;
       background-color: #00FF00;
-      margin-left: 4px;
+      margin-left: 2px;
       animation: blink 1s step-end infinite;
     }
     @keyframes blink {
-      from, to { background: transparent }
-      50% { background: #00FF00 }
+      50% { background: transparent; }
     }
-    button {
+    .input-line {
+      display: flex;
       margin-top: 2rem;
-      padding: 0.5rem;
-      background: #00FF00;
-      color: black;
+    }
+    .prompt {
+      color: #00FF00;
+    }
+    .clear-button {
+      background: black;
+      color: #00FF00;
       font-family: monospace;
       border: none;
+      outline: none;
+      font-size: 1rem;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div><strong>user@davideboss ~ % cat ./about-me-draft</strong></div>
-  <div id="output"></div>
-  <br/>
-  <button onclick="window.location.href='index.html'">clear</button>
-  
-<script>
-let i = 0;
-const text = `Salut! Sunt Davidus aka davideboss2003, student la UTCN, pasionat de embedded, AI și full-stack dev.`;
-const speed = 25;
+  <div id="terminal"></div><div id="cursor"></div>
+  <div class="input-line">
+    <span class="prompt">user@davideboss ~ % </span>
+    <button class="clear-button" onclick="window.location.href='index.html'">clear</button>
+  </div>
 
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("output").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
-}
-window.onload = typeWriter;
-</script>
-
+  <script>
+    const text = `Sunt Davidus aka davideboss2003, student la UTCN, pasionat de embedded, AI și full-stack dev.`;
+    let i = 0;
+    const speed = 25;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("terminal").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.onload = typeWriter;
+  </script>
 </body>
 </html>
