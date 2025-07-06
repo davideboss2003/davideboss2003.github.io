@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,8 +47,8 @@
 
     const files = {
       "about-me.txt": "Salut! Sunt Davidus aka davideboss2003 și îmi place să codez, să fac proiecte embedded și să învăț lucruri noi.",
-      "projects.txt": "- Smart Helmet for Visually Impaired\n- FPGA Temperature Monitor\n- Full Stack Movie App",
-      "contact.csv": "Property,Value\nName,David Mureșan\nGitHub,davideboss2003\nEmail,davidus@email.com\nLinkedIn,in/david-muresan-xyz"
+      "projects.txt": "- Smart Helmet for Visually Impaired\\n- FPGA Temperature Monitor\\n- Full Stack Movie App",
+      "contact.csv": "Property,Value\\nName,David Mureșan\\nGitHub,davideboss2003\\nEmail,davidus@email.com\\nLinkedIn,in/david-muresan-xyz"
     };
 
     function runCommand(cmd) {
@@ -58,21 +57,21 @@
       } else if (cmd.startsWith("cat ")) {
         const filename = cmd.split(" ")[1];
         if (files[filename]) {
-          terminal.innerHTML += files[filename] + "\n";
+          terminal.innerHTML += files[filename] + "\\n";
         } else {
-          terminal.innerHTML += "cat: " + filename + ": No such file\n";
+          terminal.innerHTML += "cat: " + filename + ": No such file\\n";
         }
       } else if (cmd === "ls") {
-        terminal.innerHTML += Object.keys(files).join("\n") + "\n";
+        terminal.innerHTML += Object.keys(files).join("\\n") + "\\n";
       } else {
-        terminal.innerHTML += "command not found: " + cmd + "\n";
+        terminal.innerHTML += "command not found: " + cmd + "\\n";
       }
     }
 
     cmdInput.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         const value = cmdInput.value;
-        terminal.innerHTML += "user@davideboss ~ % " + value + "\n";
+        terminal.innerHTML += "user@davideboss ~ % " + value + "\\n";
         runCommand(value);
         cmdInput.value = "";
         window.scrollTo(0, document.body.scrollHeight);
