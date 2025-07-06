@@ -1,8 +1,58 @@
 
-    <html><head><title>About Me</title></head>
-    <body style="background-color:black;color:#00FF00;font-family:monospace;padding:2rem">
-    <h2>about-me-draft</h2>
-    <p>Sunt Davidus aka davideboss2003, student la UTCN, pasionat de embedded, AI și full-stack dev.</p>
-    <button onclick="window.location.href='index.html'" style="margin-top:2rem;padding:0.5rem;background:#00FF00;color:black;font-family:monospace;border:none">clear</button>
-    </body></html>
-    
+<html>
+<head>
+  <title>about-me-draft</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00FF00;
+      font-family: monospace;
+      padding: 2rem;
+    }
+    #output::after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: #00FF00;
+      margin-left: 4px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      from, to { background: transparent }
+      50% { background: #00FF00 }
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.5rem;
+      background: #00FF00;
+      color: black;
+      font-family: monospace;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div><strong>user@davideboss ~ % cat ./about-me-draft</strong></div>
+  <div id="output"></div>
+  <br/>
+  <button onclick="window.location.href='index.html'">clear</button>
+  
+<script>
+let i = 0;
+const text = `Salut! Sunt Davidus aka davideboss2003, student la UTCN, pasionat de embedded, AI și full-stack dev.`;
+const speed = 25;
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("output").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+window.onload = typeWriter;
+</script>
+
+</body>
+</html>
